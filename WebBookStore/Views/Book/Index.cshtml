@@ -1,0 +1,41 @@
+﻿@using System.Collections;
+@model IEnumerable<WebBookStore.Models.Book>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+<a asp-controller="Book" asp-action="Add">Add a book</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>PublishYear</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Cover</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Author</td>
+                <td>@item.PublishYear</td>
+                <td>@item.Price</td>
+                <th>CategoryId</th>
+                <td><img src="/@item.Cover"/></td> 
+                <td>
+                    <a asp-action="Detail" asp-route-id ="@item.ID">View</a>
+                    <a asp-action="Update" asp-route-id="@item.ID">Update</a>
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
